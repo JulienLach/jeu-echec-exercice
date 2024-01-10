@@ -1,28 +1,36 @@
 // Chargement du DOM avant execution du code 
 document.addEventListener('DOMContentLoaded', () => {
-    let board = null // initialiser le plateau
+    let plateau = null // initialiser le plateau
     const jeu = new Chess(); // Créer une nouvelle instance Chess.js
     const historiqueMouvements = document.getElementById("historique-mouvements") // attraper la div de historique mouvements
-    let compteur
+    let compteurMouvement = 1; // initialiser le comtpeur de mouvements
+    let couleurJoueur = "w"; // initialiser la couleur du joueur en blanc
+
+    // fonction mouvement aleatoire de l'adversaire
+    const mouvementsAleatoiresAdversaire = function () {
+        const mouvementsPossibles = jeu.moves(); // 
+
+        if (jeu.game_over()) {
+            alert("Echec et mat")
+        } else {
+            const randomIdx = Math.floor(Math.random() * mouvementsPossibles.length);
+            const mouvement = mouvementsPossibles[randomIdx];
+            game.move(mouvement)
+            plateau.position(jeu.fen());
+            enregisterEtAfficherMouvement(mouvement, compteurMouvement); // enregister le mouvement et affiche le mouvement dans historique mouvement
+            compteurMouvement++; // ajouter le mouvement a la fin de la boucle
+        }
+    }
+
+    // Fonction pour enregister et afficher le mouvement dans l'historique des mouvements
+    const enregisterEtAfficherMouvement = function (mouvement, nombreMouvement) {
+        const mouvementFormate = nombreMouvement % 2 === 1 ? `${Math.ceil(count / 2)}. ${move}` : `${move} -`;
+        historiqueMouvements.textContent += mouvementFormate + " ";
+        historiqueMouvements.scrollTop = historiqueMouvements.scrollHeight // mettre le dernier mouvement en autoscroll
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Fonction pour manipuler une pièce sur le tableau
+    const
 
 })
